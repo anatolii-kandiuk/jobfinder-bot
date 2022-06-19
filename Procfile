@@ -1,1 +1,1 @@
-web: gunicorn jobfinder-bot.wsgi
+web: gunicorn app:app --log-file -
