@@ -83,7 +83,7 @@ class BotAPI(MethodView):
                     message = ''
                     for d in resp:
                         message += '#' + d['slug'] + '\n'
-                    if tmp[0] == '/sp':
+                    if tmp[0] == '/pl':
                         msg = "Доступні мови програмування: \n"
                     else:
                         msg = "Доступні міста: \n"
