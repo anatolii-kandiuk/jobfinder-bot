@@ -4,6 +4,8 @@ from flask import Flask
 from flask.views import MethodView
 from flask import request
 import os
+# from dotenv import load_dotenv
+# load_dotenv()
 
 app = Flask(__name__)
 TOKEN = os.environ.get('TOKEN')
@@ -27,18 +29,18 @@ def send_message(chat_id, msg):
 
 
 def parse_text(text_msg):
-    '''/start /help, /city /sp, @kiyv @python'''
-    addresses = {'city': '/cities', 'pl': '/program_language'}
+    '''/start /help, /city /pl, @kyiv @python'''
+    addresses = {'city': '/cities', 'pl': '/pl'}
     command_p = r'/\w+'
     dog_p = r'@\w+'
     message = 'Невірний запит'
     if '/' in text_msg:
         if '/start' in text_msg or '/help' in text_msg:
             message = '''
-            Щоб дізнатися які міста доступні введіть `/city`. 
-            Щоб дізнатися які мови програмування доступні введіть `/pl` 
-            Щоб зробити запит, використайте конструкцію - @city @program language. 
-            Наприклад: `@kyiv @python` 
+            Щоб дізнатися які міста доступні введіть `/city`.
+            Щоб дізнатися які мови програмування доступні введіть `/pl`
+            Щоб зробити запит, використайте конструкцію - @city @pl.
+            Наприклад: `@kyiv @python`
             '''
             return message
         else:
@@ -107,7 +109,7 @@ class BotAPI(MethodView):
                             pices.append(resp[y + 10:])
                     # Відправляю в відповідь заголовок
                     text_msg = 'Результат:\n'
-                    text_msg += '- ' * 10 + '\n'
+                    text_msg += '--- ' * 10 + '\n'
                     send_message(chat_id, text_msg)
 
                     for part in pices:
